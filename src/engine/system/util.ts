@@ -13,7 +13,7 @@ export const buildNormalizedVector = (source: Boid, target: Boid) => {
     const xDiff = (target?.x || 0) - (source?.x || 0);
     const yDiff = (target?.y || 0) - (source?.y || 0);
 
-    const diff = distance(source, target);
+    const diff = buildDistance(source, target);
 
     const xVelocity = xDiff / diff;
     const yVelocity = yDiff / diff;
