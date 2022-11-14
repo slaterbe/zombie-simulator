@@ -37,7 +37,7 @@ const buildIndividualNeighbourForce = (sourceBoid: Boid, neighbour: Boid) => {
 
     const vector = buildNormalizedVector(sourceBoid, neighbour);
 
-    return { x: -vector.x * 5, y: -vector.y * 5 }
+    return { x: -vector.x * 2, y: -vector.y * 2 }
 }
 
 const updateIndividualBoid = (gameState: GameState, delta: number, sourceBoid: Boid): void => {
