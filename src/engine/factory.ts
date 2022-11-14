@@ -1,32 +1,30 @@
+import * as _ from "lodash";
+
 export interface Boid{
     x: number,
-    y: number
+    y: number,
+    renderId: string
 }
 
 export interface GameState{
-    boids: {
-        [name: string]: Boid
-    }
+    boids: Boid[]
 }
 
-export const buildBoids = (): GameState=> ({
-    boids: {
-        boid0: {
-            x: 400,
-            y: 200
-        },
-        boid1: {
-            x: 430,
-            y: 200
-        },
-        boid2: {
-            x: 460,
-            y: 200
-        }
-    }
-})
+export const buildBoids = (count: number): GameState=> {
+    const boids = _.range(count).map(item => ({
+        x: 400 + item * 30,
+        y: 200,
+        renderId: `boid${item}`
+    }));
+
+    console.log(boids[0]);
+    console.log(boids[1]);
+
+    return { boids };
+}
 
 export const target = (): Boid => ({
     x: 300,
-    y: 400
+    y: 400,
+    renderId: "target"
 })

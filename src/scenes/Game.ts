@@ -9,7 +9,7 @@ export default class Demo extends Phaser.Scene {
 
   constructor() {
     super('GameScene');
-    this.gameState = buildBoids();
+    this.gameState = buildBoids(50);
   }
 
   preload() {
@@ -17,12 +17,12 @@ export default class Demo extends Phaser.Scene {
   }
 
   create() {
-    ['boid0', 'boid1', 'boid2']
-      .forEach(key => {
-        const x = this.gameState.boids[key].x;
-        const y = this.gameState.boids[key].y;
+    this.gameState.boids
+      .forEach(boid => {
+        const x = boid.x;
+        const y = boid.y;
 
-        this.Circles[key] = this.add.circle(x, y, 5, 0xff0000, 1);
+        this.Circles[boid.renderId] = this.add.circle(x, y, 5, 0xff0000, 1);
       })
 
     this.add.circle(target().x, target().y, 5, 0x00ff00, 1);
@@ -31,13 +31,13 @@ export default class Demo extends Phaser.Scene {
   update(time: number, delta: number) {
     updateSystem(this.gameState, delta);
 
-    ['boid0', 'boid1', 'boid2']
-      .forEach(key => {
-        const x = this.gameState.boids[key].x;
-        const y = this.gameState.boids[key].y;
+    this.gameState.boids
+      .forEach(boid => {
+        const x = boid.x;
+        const y = boid.y;
 
-        this.Circles[key].x = x;
-        this.Circles[key].y = y;
-      })
+        this.Circles[boid.renderId].x = x;
+        this.Circles[boid.renderId].y = y;
+      });
   }
 }
